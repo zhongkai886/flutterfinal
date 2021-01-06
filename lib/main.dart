@@ -43,7 +43,7 @@ class _AppHomeState extends State<AppHome> {
     );
   }
 }
-
+//dialog的畫面和接收值
 class ContactEditAlertDialog extends StatefulWidget {
   final String docId;
   final Contact contact;
@@ -159,6 +159,7 @@ class _ContactListViewState extends State<ContactListView> {
         builder: (context, snapshot) {
           if (!snapshot.hasData) return LinearProgressIndicator();
           _contactCount = snapshot.data.documents.length;
+          //製作列表 ListView
           return ListView.builder(
             itemBuilder: (context, index) {
               Contact contact =
@@ -168,20 +169,35 @@ class _ContactListViewState extends State<ContactListView> {
                 title: Text(contact.name),
                 subtitle: Text(contact.chatcontent),
                 onTap: () {
-                  showDialog(
-                      context: context,
-                      barrierDismissible: true,
-                      builder: (context) {
-                        return ContactEditAlertDialog(
-                          docId: contactDocId,
-                          contact: contact,
-                        );
-                      });
+                  print("87");
+                  Navigator.push(
+                    context,MaterialPageRoute(builder: (context) => MessageContent(name: contact.name,chatContent: contact.chatcontent)
+                  ),
+                  );
                 },
               );
             },
             itemCount: _contactCount,
           );
         });
+  }
+}
+class MessageContent extends StatelessWidget {
+  String name;
+  String chatContent;
+  MessageContent({this.name,this.chatContent}) : super(){}
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('MessageContent'),
+      ),
+      body: Column(
+        children: [
+          Text(name),
+          Text(chatContent),
+        ],
+      ),
+    );
   }
 }
