@@ -68,7 +68,7 @@ class _ContactEditAlertDialogState extends State<ContactEditAlertDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text((docId != null && docId.length > 0) ? '編輯聯絡人' : '新增聯絡人'),
+      title: Text((docId != null && docId.length > 0) ? '編輯聯絡人' : '新增訊息'),
       content: Container(
         constraints: BoxConstraints(minHeight: 40, maxHeight: 160),
         child: Column(
@@ -81,11 +81,11 @@ class _ContactEditAlertDialogState extends State<ContactEditAlertDialog> {
               onChanged: (value) => contact.name = value,
             ),
             TextFormField(
-              initialValue: (contact != null) ? contact.cellPhone : '',
+              initialValue: (contact != null) ? contact.chatcontent : '',
               decoration: InputDecoration(
-                labelText: "Cell Phone",
+                labelText: "Content",
               ),
-              onChanged: (value) => contact.cellPhone = value,
+              onChanged: (value) => contact.chatcontent = value,
             )
           ],
         ),
@@ -166,7 +166,7 @@ class _ContactListViewState extends State<ContactListView> {
               String contactDocId = snapshot.data.documents[index].documentID;
               return ListTile(
                 title: Text(contact.name),
-                subtitle: Text(contact.cellPhone),
+                subtitle: Text(contact.chatcontent),
                 onTap: () {
                   showDialog(
                       context: context,
