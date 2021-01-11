@@ -166,8 +166,12 @@ class _ContactListViewState extends State<ContactListView> {
               Contact.fromDocumentSnapshot(snapshot.data.documents[index]);
               String contactDocId = snapshot.data.documents[index].documentID;
               return ListTile(
-                title: Text(contact.name),
-                subtitle: Text(contact.chatcontent),
+                leading: Icon(
+                  Icons.person,
+                  color: Colors.blue,
+                ),
+                title: Text(contact.name,style:new TextStyle(fontSize: 20)),
+                subtitle: Text(contact.chatcontent,style:new TextStyle(fontSize: 16)),
                 onTap: () {
                   print("87");
                   Navigator.push(
@@ -190,7 +194,8 @@ class MessageContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('MessageContent'),
+        centerTitle:true,
+        title: Text('Article page'),
       ),
       body: Column(
         children: [
