@@ -27,8 +27,15 @@ class _AppHomeState extends State<AppHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(title: Text('Home'),centerTitle: true),
       body: HomeBody(),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        child: Container(
+          height: 45.0,
+          color: Colors.blueAccent,
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showDialog(
@@ -40,6 +47,8 @@ class _AppHomeState extends State<AppHome> {
         },
         child: Icon(Icons.add),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+
     );
   }
 }
@@ -68,7 +77,7 @@ class _ContactEditAlertDialogState extends State<ContactEditAlertDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text((docId != null && docId.length > 0) ? '編輯聯絡人' : '新增訊息'),
+      title: Text((docId != null && docId.length > 0) ? '編輯聯絡人' : 'Add Article'),
       content: Container(
         constraints: BoxConstraints(minHeight: 40, maxHeight: 160),
         child: Column(
@@ -76,7 +85,7 @@ class _ContactEditAlertDialogState extends State<ContactEditAlertDialog> {
             TextFormField(
               initialValue: (contact != null) ? contact.name : '',
               decoration: InputDecoration(
-                labelText: "Name",
+                labelText: "Title",
               ),
               onChanged: (value) => contact.name = value,
             ),
