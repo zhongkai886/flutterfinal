@@ -90,11 +90,11 @@ class _ContactEditAlertDialogState extends State<ContactEditAlertDialog> {
               onChanged: (value) => contact.name = value,
             ),
             TextFormField(
-              initialValue: (contact != null) ? contact.chatcontent : '',
+              initialValue: (contact != null) ? contact.content : '',
               decoration: InputDecoration(
                 labelText: "Content",
               ),
-              onChanged: (value) => contact.chatcontent = value,
+              onChanged: (value) => contact.content = value,
             )
           ],
         ),
@@ -180,11 +180,10 @@ class _ContactListViewState extends State<ContactListView> {
                   color: Colors.blue,
                 ),
                 title: Text(contact.name,style:new TextStyle(fontSize: 20)),
-                subtitle: Text(contact.chatcontent,style:new TextStyle(fontSize: 16)),
+                subtitle: Text(contact.content,style:new TextStyle(fontSize: 16)),
                 onTap: () {
-                  print("87");
                   Navigator.push(
-                    context,MaterialPageRoute(builder: (context) => MessageContent(name: contact.name,chatContent: contact.chatcontent)
+                    context,MaterialPageRoute(builder: (context) => MessageContent(name: contact.name,content: contact.content)
                   ),
                   );
                 },
@@ -197,8 +196,8 @@ class _ContactListViewState extends State<ContactListView> {
 }
 class MessageContent extends StatelessWidget {
   String name;
-  String chatContent;
-  MessageContent({this.name,this.chatContent}) : super(){}
+  String content;
+  MessageContent({this.name,this.content}) : super(){}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -208,8 +207,10 @@ class MessageContent extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Text(name),
-          Text(chatContent),
+          Padding(padding: const EdgeInsets.all(10.0),
+            child: Text(name,style: TextStyle(fontWeight: FontWeight.w500,fontSize: 25)),),
+          Padding(padding: const EdgeInsets.all(10.0),
+            child: Text(content,style: TextStyle(fontWeight: FontWeight.w400,fontSize: 20,color: Colors.black54)),)
         ],
       ),
     );

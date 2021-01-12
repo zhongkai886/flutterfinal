@@ -2,22 +2,22 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Contact {
   String name;
-  String chatcontent;
+  String content;
 
-  Contact({this.name, this.chatcontent}) : super() {
+  Contact({this.name, this.content}) : super() {
     if (name == null) name = '';
-    if (chatcontent == null) chatcontent = '';
+    if (content == null) content = '';
   }
 
   Map<String, dynamic> toMap() {
     Map<String, dynamic> mapObj = Map<String, dynamic>();
     mapObj["name"] = name;
-    mapObj["chat_content"] = chatcontent;
+    mapObj["chat_content"] = content;
     return mapObj;
   }
 
   Contact.fromDocumentSnapshot(DocumentSnapshot doc) {
     name = doc['name'];
-    chatcontent = doc['chat_content'];
+    content = doc['chat_content'];
   }
 }
